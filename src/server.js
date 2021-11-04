@@ -10,7 +10,9 @@ const sockets = new Server(server)
 app.use(express.static('public'))
 
 const game = createGame()
-game.start()
+let gameAddFruit = null
+
+
 
 game.subscribe((command) => {
     console.log(`> Emitting ${command.type}`);
@@ -22,12 +24,15 @@ sockets.on('connection', (socket) => {
     const playerId = socket.id;
     console.log(`Player connected on Server ${playerId}`)
 
+    if(game.gameOver()) gameAddFruit = game.start()
+
     game.addPlayer({ playerId })
-    console.log(game.state);
 
     socket.on('disconnect', () => {
         game.removePlayer({ playerId })
         game.unSubscribe()
+
+        if(game.gameOver()) game.stop(gameAddFruit)
     })
 
     socket.emit('setup', game.state)
@@ -45,6 +50,8 @@ sockets.on('connection', (socket) => {
 
 
 
-server.listen(process.env.PORT || 3000, () => {
+
+
+server.listen(process.env.PORT || 3001, () => {
     console.log("> Sever listening on port: 3000");
 })

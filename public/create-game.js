@@ -12,7 +12,16 @@ export function createGame() {
 
     function start() {
         const frequency = 3500
-        setInterval(addFruit, frequency)
+        return setInterval(addFruit, frequency)
+    }
+
+    function stop(value) {
+        clearInterval(value)
+    }
+
+    function gameOver(){
+        const listPlayers = Object.getOwnPropertyNames(state.players)
+        return Boolean(!listPlayers.length)
     }
 
     function subscribe(observerFunction) {
@@ -127,6 +136,8 @@ export function createGame() {
         addFruit,
         removeFruit,
         start,
-        unSubscribe
+        unSubscribe,
+        stop,
+        gameOver
     };
 }
