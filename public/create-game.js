@@ -11,7 +11,7 @@ export function createGame() {
     const observers = []
 
     function start() {
-        const frequency = 3000
+        const frequency = 3500
         setInterval(addFruit, frequency)
     }
 
