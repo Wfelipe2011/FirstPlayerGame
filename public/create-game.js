@@ -6,7 +6,8 @@ export function createGame() {
         screen: {
             width: 10,
             height: 10
-        }
+        },
+        collect: 0
     };
 
     const observers = []
@@ -125,6 +126,7 @@ export function createGame() {
 
             if (player.x === fruit.x && player.y === fruit.y) {
                 removeFruit({ fruitId });
+                state.collect++
             }
         }
     }

@@ -30,6 +30,7 @@
     const keyboardListener = createKeyboardListener(document);
 
     const collectFruitAudio = new Audio("collect.mp3");
+    const collect100FruitAudio = new Audio("life.mp3");
 
     const socket = io();
 
@@ -76,9 +77,17 @@
     });
     socket.on("remove-fruit", (command) => {
       game.removeFruit(command);
-      collectFruitAudio.pause();
-      collectFruitAudio.currentTime = 0;
-      collectFruitAudio.play();
+      console.log(game.state.collect);
+      if (game.state.collect > 10) {
+        collect100FruitAudio.pause();
+        collect100FruitAudio.currentTime = 0;
+        collect100FruitAudio.play();
+        game.state.collect = 0;
+      } else {
+        collectFruitAudio.pause();
+        collectFruitAudio.currentTime = 0;
+        collectFruitAudio.play();
+      }
     });
   </script>
 </html>
