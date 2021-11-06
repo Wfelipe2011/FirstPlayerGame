@@ -1,4 +1,5 @@
 export function createGame() {
+  
     const state = {
         players: {},
         fruits: {},
@@ -19,7 +20,7 @@ export function createGame() {
         clearInterval(value)
     }
 
-    function gameOver(){
+    function gameOver() {
         const listPlayers = Object.getOwnPropertyNames(state.players)
         return Boolean(!listPlayers.length)
     }
@@ -113,6 +114,8 @@ export function createGame() {
             checkkedForFruitCollition({ playerId });
         }
     }
+
+
 
     function checkkedForFruitCollition({ playerId }) {
         const player = state.players[playerId];

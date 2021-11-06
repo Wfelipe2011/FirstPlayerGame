@@ -19,6 +19,7 @@
   </head>
   <body>
     <canvas id="screen" width="10" height="10"></canvas>
+    <audio src="moeda.mp3"></audio>
   </body>
   <script type="module">
     import { createKeyboardListener } from "./keyboardListener.js";
@@ -28,13 +29,18 @@
     const game = createGame();
     const keyboardListener = createKeyboardListener(document);
 
+    const collectFruitAudio = new Audio('collect.mp3')
+
+   
     const socket = io();
 
     socket.on("connect", () => {
       const playerId = socket.id;
+
       console.log(`Player connected on Cliente with id: ${playerId}`);
       const screen = document.getElementById("screen");
       renderScreen(screen, game, requestAnimationFrame, playerId);
+      Notification.requestPermission();
     });
 
     socket.on("setup", (state) => {
@@ -55,22 +61,23 @@
     socket.on("remove-player", (command) => {
       console.log({ command });
       game.removePlayer(command);
-      keyboardListener.unSubscribe(game.movePlayer)
+      keyboardListener.unSubscribe(game.movePlayer);
     });
 
-    socket.on('move-player', (command) => {
+    socket.on("move-player", (command) => {
       const playerId = socket.id;
 
-      if(playerId !== command.playerId){
-        game.movePlayer(command)
+      if (playerId !== command.playerId) {
+        game.movePlayer(command);
       }
-    })
+    });
 
     socket.on("add-fruit", (command) => {
       game.addFruit(command);
     });
     socket.on("remove-fruit", (command) => {
       game.removeFruit(command);
+      collectFruitAudio.play();
     });
   </script>
 </html>
