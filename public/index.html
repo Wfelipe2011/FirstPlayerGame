@@ -29,9 +29,8 @@
     const game = createGame();
     const keyboardListener = createKeyboardListener(document);
 
-    const collectFruitAudio = new Audio('collect.mp3')
+    const collectFruitAudio = new Audio("collect.mp3");
 
-   
     const socket = io();
 
     socket.on("connect", () => {
@@ -77,6 +76,8 @@
     });
     socket.on("remove-fruit", (command) => {
       game.removeFruit(command);
+      collectFruitAudio.pause();
+      collectFruitAudio.currentTime = 0;
       collectFruitAudio.play();
     });
   </script>
