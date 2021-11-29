@@ -59,7 +59,7 @@ const jobInfo = new JobInfo()
 // jobInfo.start('*/1 * * * *')
 
 const jobGet = new JobGet()
-jobGet.start('*/10 * * * *')
+jobGet.start('*/1 * * * *')
 
 server.listen(process.env.PORT || 3001, () => {
     console.log("> Sever listening on port: 3000");
