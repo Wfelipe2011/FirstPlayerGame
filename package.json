@@ -13,6 +13,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "howler": "^2.2.3",
+    "axios": "^0.24.0",
+    "node-schedule": "^2.0.0",
     "socket.io": "^4.3.1"
   }
 }
