@@ -53,13 +53,13 @@ sockets.on('connection', (socket) => {
 
 
 
-// teste de automação
-// teste por minuto '*/1 * * * *'
-const jobInfo = new JobInfo()
-// jobInfo.start('*/1 * * * *')
+// // teste de automação
+// // teste por minuto '*/1 * * * *'
+// const jobInfo = new JobInfo()
+// // jobInfo.start('*/1 * * * *')
 
-const jobGet = new JobGet()
-jobGet.start('*/1 * * * *')
+// const jobGet = new JobGet()
+// jobGet.start('*/1 * * * *')
 
 server.listen(process.env.PORT || 3001, () => {
     console.log("> Sever listening on port: 3000");
