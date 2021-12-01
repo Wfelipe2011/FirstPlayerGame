@@ -25,9 +25,10 @@ export function createKeyboardListener(document) {
     state.playerId = playerId
   }
 
-  document.addEventListener("keydown", handleKeydown);
+  document.addEventListener("keyup", handleKeydown);
   function handleKeydown(event) {
     const keyPress = event.key;
+    console.log(event);
     const command = {
       type: 'move-player',
       playerId: state.playerId,

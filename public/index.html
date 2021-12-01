@@ -14,12 +14,74 @@
         width: 400px;
         height: 400px;
       }
+
+      .container {
+        width: 400px;
+      }
+
+      .btn-container {
+        display: flex;
+        width: 100%;
+        margin: auto;
+        align-items: center;
+        flex-direction: column;
+        
+      }
+
+      .btn-container button {
+        width: 150px;
+        height: 50px;
+        margin: 3px;
+        border-radius: 100%;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        background: rgb(223, 15, 15);
+        font-size: 18px;
+      }
+
+      .left {
+        align-self: flex-start;
+        background: rgb(15, 70, 223) !important;
+      }
+      .right {
+        align-self: flex-end;
+        margin-top: -50px !important;
+        
+      }
+
+      #down {
+        background: rgb(15, 70, 223) !important;
+      }
+      
+
+      @media (max-width: 500px) {
+        #screen {
+          width: 90vw;
+          height: 40vh;
+        }
+        .btn-container button {
+          width: 110px;
+        }
+
+        .container {
+          width: 90vw;
+          margin: 8px;
+        }
+      }
     </style>
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
-    <canvas id="screen" width="10" height="10"></canvas>
-    <audio src="moeda.mp3"></audio>
+    <div class="container">
+      <canvas id="screen" width="10" height="10"></canvas>
+      <audio src="moeda.mp3"></audio>
+      <div class="btn-container">
+        <button id="up">Up</button>
+        <button id="left" class="left">Left</button>
+        <button id="right" class="right">Right</button>
+        <button id="down">Down</button>
+      </div>
+    </div>
   </body>
   <script type="module">
     import { createKeyboardListener } from "./keyboardListener.js";
@@ -33,10 +95,10 @@
     const collect100FruitAudio = new Audio("life.mp3");
 
     const socket = io();
-
+    let id = 0;
     socket.on("connect", () => {
       const playerId = socket.id;
-
+      id = socket.id;
       console.log(`Player connected on Cliente with id: ${playerId}`);
       const screen = document.getElementById("screen");
       renderScreen(screen, game, requestAnimationFrame, playerId);
@@ -89,5 +151,44 @@
         collectFruitAudio.play();
       }
     });
+    document.getElementById("up").onclick = function () {
+      moveButtonUp();
+    };
+    document.getElementById("left").onclick = function () {
+      moveButtonLeft();
+    };
+    document.getElementById("down").onclick = function () {
+      moveButtonDown();
+    };
+    document.getElementById("right").onclick = function () {
+      moveButtonRigh();
+    };
+
+    function moveButtonUp() {
+      game.movePlayer({
+        playerId: id,
+        keyPress: "ArrowUp",
+      });
+    }
+
+    function moveButtonLeft() {
+      game.movePlayer({
+        playerId: id,
+        keyPress: "ArrowLeft",
+      });
+    }
+
+    function moveButtonRigh() {
+      game.movePlayer({
+        playerId: id,
+        keyPress: "ArrowRight",
+      });
+    }
+    function moveButtonDown() {
+      game.movePlayer({
+        playerId: id,
+        keyPress: "ArrowDown",
+      });
+    }
   </script>
 </html>
