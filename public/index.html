@@ -11,8 +11,8 @@
         image-rendering: pixelated;
         image-rendering: crisp-edges;
         image-rendering: -moz-crisp-edges;
-        width: 400px;
-        height: 400px;
+        width: 500px;
+        height: 500px;
       }
 
       .container {
@@ -25,7 +25,6 @@
         margin: auto;
         align-items: center;
         flex-direction: column;
-        
       }
 
       .btn-container button {
@@ -46,13 +45,11 @@
       .right {
         align-self: flex-end;
         margin-top: -50px !important;
-        
       }
 
       #down {
         background: rgb(15, 70, 223) !important;
       }
-      
 
       @media (max-width: 500px) {
         #screen {
@@ -165,29 +162,37 @@
     };
 
     function moveButtonUp() {
-      game.movePlayer({
-        playerId: id,
-        keyPress: "ArrowUp",
+      socket.on("move-player", (command) => {
+        game.movePlayer({
+          playerId: id,
+          keyPress: "ArrowUp",
+        });
       });
     }
 
     function moveButtonLeft() {
-      game.movePlayer({
-        playerId: id,
-        keyPress: "ArrowLeft",
+      socket.on("move-player", (command) => {
+        game.movePlayer({
+          playerId: id,
+          keyPress: "ArrowLeft",
+        });
       });
     }
 
     function moveButtonRigh() {
-      game.movePlayer({
-        playerId: id,
-        keyPress: "ArrowRight",
+      socket.on("move-player", (command) => {
+        game.movePlayer({
+          playerId: id,
+          keyPress: "ArrowRight",
+        });
       });
     }
     function moveButtonDown() {
-      game.movePlayer({
-        playerId: id,
-        keyPress: "ArrowDown",
+      socket.on("move-player", (command) => {
+        game.movePlayer({
+          playerId: id,
+          keyPress: "ArrowDown",
+        });
       });
     }
   </script>
