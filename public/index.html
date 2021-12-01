@@ -161,38 +161,36 @@
       moveButtonRigh();
     };
 
+    const move = (command) =>{
+      game.movePlayer(command);
+      socket.emit("move-player", command);
+    }
+
     function moveButtonUp() {
-      socket.on("move-player", (command) => {
-        game.movePlayer({
-          playerId: id,
-          keyPress: "ArrowUp",
-        });
-      });
+      const command = {
+        playerId: id,
+        keyPress: "ArrowUp",
+      }
+      move(command)
     }
 
     function moveButtonLeft() {
-      socket.on("move-player", (command) => {
-        game.movePlayer({
-          playerId: id,
-          keyPress: "ArrowLeft",
-        });
+      move({
+        playerId: id,
+        keyPress: "ArrowLeft",
       });
     }
 
     function moveButtonRigh() {
-      socket.on("move-player", (command) => {
-        game.movePlayer({
-          playerId: id,
-          keyPress: "ArrowRight",
-        });
+      move({
+        playerId: id,
+        keyPress: "ArrowRight",
       });
     }
     function moveButtonDown() {
-      socket.on("move-player", (command) => {
-        game.movePlayer({
-          playerId: id,
-          keyPress: "ArrowDown",
-        });
+      move({
+        playerId: id,
+        keyPress: "ArrowDown",
       });
     }
   </script>
