@@ -1,4 +1,4 @@
-module.exports = function createGame() {
+export function createGame() {
 
     const state = {
         players: {},
@@ -11,7 +11,7 @@ module.exports = function createGame() {
         collectFrutisPlayers: []
     };
 
-    const observers = []
+    let observers = []
 
     function start() {
         const frequency = 3500
@@ -32,7 +32,7 @@ module.exports = function createGame() {
         observers.push(observerFunction);
     }
     function unSubscribe() {
-        state.observers = []
+        observers = []
     }
 
     function notifyAll(command) {

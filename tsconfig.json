@@ -5,7 +5,7 @@
         "outDir": "dist",
         "strict": false,
         "incremental": true,
-        "target": "es6",
+        "target": "ES2021",
         "module": "CommonJS",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
@@ -37,8 +37,7 @@
         "emitDecoratorMetadata": true
     },
     "include": [
-        "./src/**/*.ts",
-        "./test/**/*.ts"
+        "./app/**/*.ts",
     ],
     "exclude": [
         "./node_modules",
