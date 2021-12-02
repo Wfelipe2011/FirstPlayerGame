@@ -15,14 +15,14 @@ let gameAddFruit = null
 
 
 game.subscribe((command) => {
-    console.log(`> Emitting ${command.type}`);
+    // console.log(`> Emitting ${command.type}`);
     sockets.emit(command.type, command)
 })
 
 
 sockets.on('connection', (socket) => {
     const playerId = socket.id;
-    console.log(`Player connected on Server ${playerId}`)
+    // console.log(`Player connected on Server ${playerId}`)
 
     if(game.gameOver()) gameAddFruit = game.start()
 
@@ -38,7 +38,7 @@ sockets.on('connection', (socket) => {
     socket.emit('setup', game.state)
 
     socket.on('move-player', (command) => {
-        console.log(command);
+        // console.log(command);
         command.playerId = playerId
         command.type = 'move-player'
 

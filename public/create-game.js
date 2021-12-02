@@ -1,5 +1,5 @@
 export function createGame() {
-  
+
     const state = {
         players: {},
         fruits: {},
@@ -7,7 +7,8 @@ export function createGame() {
             width: 10,
             height: 10
         },
-        collect: 0
+        collect: 0,
+        collectFrutisPlayers: []
     };
 
     const observers = []
@@ -27,7 +28,7 @@ export function createGame() {
     }
 
     function subscribe(observerFunction) {
-        console.log({ observerFunction });
+        // console.log({ observerFunction });
         observers.push(observerFunction);
     }
     function unSubscribe() {
@@ -35,7 +36,7 @@ export function createGame() {
     }
 
     function notifyAll(command) {
-        console.log(`Notifying ${observers.length} observers`);
+        // console.log(`Notifying ${observers.length} observers`);
 
         observers.forEach((observerFunction) =>
             observerFunction(command)
@@ -87,6 +88,8 @@ export function createGame() {
 
     function removeFruit(command) {
         const { fruitId } = command
+        // console.log(command);
+        // collectFrutisPlayers
         delete state.fruits[fruitId];
         notifyAll({
             type: 'remove-fruit',
@@ -97,7 +100,7 @@ export function createGame() {
     function movePlayer(command) {
         notifyAll(command)
         const { playerId, keyPress } = command
-        console.log(`Moving ${playerId} with ${keyPress}`);
+        // console.log(`Moving ${playerId} with ${keyPress}`);
 
         const acceptedMoves = {
             ArrowUp: (player) => player.y - 1 >= 0 && (player.y = player.y - 1),
@@ -105,6 +108,7 @@ export function createGame() {
             ArrowRight: (player) =>
                 player.x + 1 < state.screen.width && (player.x = player.x + 1),
             ArrowLeft: (player) => player.x - 1 >= 0 && (player.x = player.x - 1),
+            s: () => state.collectFrutisPlayers = []
         };
 
         const player = state.players[playerId];
@@ -126,7 +130,12 @@ export function createGame() {
 
             if (player.x === fruit.x && player.y === fruit.y) {
                 removeFruit({ fruitId });
-                state.collect++
+                const playerFrutis = state.collectFrutisPlayers.filter(player => player.name == playerId)
+                if (playerFrutis.length) {
+                    playerFrutis[0].frutis += 1
+                } else {
+                    state.collectFrutisPlayers.push({ name: playerId, frutis: 1 })
+                }
             }
         }
     }

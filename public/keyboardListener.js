@@ -9,12 +9,12 @@ export function createKeyboardListener(document) {
   }
 
   function unSubscribe(functionId){
-    console.log("Remove subscribe!");
+    // console.log("Remove subscribe!");
     delete state.observers[functionId]
   }
 
   function notifyAll(command) {
-    console.log(`Notifying ${state.observers.length} observers`);
+    // console.log(`Notifying ${state.observers.length} observers`);
 
     state.observers.forEach((observerFunction) =>
       observerFunction(command)
@@ -28,7 +28,7 @@ export function createKeyboardListener(document) {
   document.addEventListener("keyup", handleKeydown);
   function handleKeydown(event) {
     const keyPress = event.key;
-    console.log(event);
+    // console.log(event);
     const command = {
       type: 'move-player',
       playerId: state.playerId,

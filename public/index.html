@@ -66,6 +66,10 @@
         }
       }
     </style>
+    <div class="container">
+      <h1>Placar:</h1>
+      <div id="placar"></div>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
@@ -113,12 +117,12 @@
     });
 
     socket.on("add-player", (command) => {
-      console.log({ command });
+      // console.log({ command });
       game.addPlayer(command);
     });
 
     socket.on("remove-player", (command) => {
-      console.log({ command });
+      // console.log({ command });
       game.removePlayer(command);
       keyboardListener.unSubscribe(game.movePlayer);
     });
@@ -136,7 +140,8 @@
     });
     socket.on("remove-fruit", (command) => {
       game.removeFruit(command);
-      console.log(game.state.collect);
+      // console.log(game);
+      setPlacar();
       if (game.state.collect > 10) {
         collect100FruitAudio.pause();
         collect100FruitAudio.currentTime = 0;
@@ -161,17 +166,17 @@
       moveButtonRigh();
     };
 
-    const move = (command) =>{
+    const move = (command) => {
       game.movePlayer(command);
       socket.emit("move-player", command);
-    }
+    };
 
     function moveButtonUp() {
       const command = {
         playerId: id,
         keyPress: "ArrowUp",
-      }
-      move(command)
+      };
+      move(command);
     }
 
     function moveButtonLeft() {
@@ -192,6 +197,22 @@
         playerId: id,
         keyPress: "ArrowDown",
       });
+    }
+
+    const placar = document.getElementById("placar");
+
+    function setPlacar() {
+      const teste = game.state.collectFrutisPlayers
+        .sort((a, b) => b.frutis - a.frutis)
+        .map((item) => {
+          return `<p style="
+      padding: 10px;
+      margin: 0;">
+    Nome: ${item.name} frutas: ${item.frutis}</p>`;
+        })
+        .filter((item, index) => Boolean(index < 3));
+
+      placar.innerHTML = teste.join("");
     }
   </script>
 </html>
