@@ -1,4 +1,4 @@
-export function createGame() {
+module.exports = function createGame() {
 
     const state = {
         players: {},
