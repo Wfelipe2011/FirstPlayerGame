@@ -1,8 +1,7 @@
 "use strict";
-// Object.defineProperty(exports, "__esModule", { value: true });
-// const _createGame = void 0;
-// export { _createGame as createGame };
-export function createGame() {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createGame = void 0;
+function createGame() {
     const state = {
         players: {},
         fruits: {},
@@ -125,6 +124,5 @@ export function createGame() {
         gameOver
     };
 }
-// const _createGame = createGame;
-// export { _createGame as createGame };
+exports.createGame = createGame;
 //# sourceMappingURL=create-game.js.map

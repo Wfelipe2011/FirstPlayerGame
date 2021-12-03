@@ -1,8 +1,7 @@
 "use strict";
-// Object.defineProperty(exports, "__esModule", { value: true });
-// const _createKeyboardListener = void 0;
-// export { _createKeyboardListener as createKeyboardListener };
-export function createKeyboardListener(document) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createKeyboardListener = void 0;
+function createKeyboardListener(document) {
     const state = {
         observers: [],
         playerId: null
@@ -35,6 +34,5 @@ export function createKeyboardListener(document) {
         unSubscribe
     };
 }
-// const _createKeyboardListener = createKeyboardListener;
-// export { _createKeyboardListener as createKeyboardListener };
+exports.createKeyboardListener = createKeyboardListener;
 //# sourceMappingURL=keyboardListener.js.map

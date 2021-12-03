@@ -9,10 +9,12 @@ class Game {
     }
     start() {
         this.game.subscribe((command) => {
+            console.log(`> Emitting ${command.type}`);
             this.sockets.emit(command.type, command);
         });
         this.sockets.on("connection", (socket) => {
             const playerId = socket.id;
+            console.log(`Player connected on Server ${playerId}`);
             if (this.game.gameOver())
                 this.gameAddFruit = this.game.start();
             this.game.addPlayer({ playerId });

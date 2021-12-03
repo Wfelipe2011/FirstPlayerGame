@@ -1,8 +1,7 @@
 "use strict";
-// Object.defineProperty(exports, "__esModule", { value: true });
-// const _renderScreen = void 0;
-// export { _renderScreen as renderScreen };
-export function renderScreen(screen, game, requestAnimationFrame, currentPlayerId) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.renderScreen = void 0;
+function renderScreen(screen, game, requestAnimationFrame, currentPlayerId) {
     const context = screen.getContext("2d");
     context.fillStyle = "white";
     context.clearRect(0, 0, 10, 10);
@@ -25,6 +24,5 @@ export function renderScreen(screen, game, requestAnimationFrame, currentPlayerI
         renderScreen(screen, game, requestAnimationFrame, currentPlayerId);
     });
 }
-// const _renderScreen = renderScreen;
-// export { _renderScreen as renderScreen };
+exports.renderScreen = renderScreen;
 //# sourceMappingURL=render-screen.js.map
