@@ -5,7 +5,7 @@
         "outDir": "dist",
         "strict": false,
         "incremental": true,
-        "target": "es6",
+        "target": "ES6",
         "module": "ES2015",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,

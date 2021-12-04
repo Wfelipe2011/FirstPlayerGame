@@ -76,6 +76,7 @@ export function createGame() {
     function movePlayer(command) {
         notifyAll(command);
         const { playerId, keyPress } = command;
+        console.log(`Moving ${playerId} with ${keyPress}`);
         const acceptedMoves = {
             ArrowUp: (player) => player.y - 1 >= 0 && (player.y = player.y - 1),
             ArrowDown: (player) => player.y + 1 < state.screen.height && (player.y = player.y + 1),
