@@ -1,6 +1,6 @@
-import { Game } from "./module/game";
-import { createGame } from "./core/create-game";
-import { SetupExpress } from "./module/infra/setup-express";
+import { Game } from "./module/game.js";
+import { createGame } from "./core/create-game.js";
+import { SetupExpress } from "./module/infra/setup-express.js";
 
 const game = createGame();
 const setupExpress = new SetupExpress();
@@ -12,5 +12,6 @@ class SetupServer {
     setupExpress.start();
   }
 }
+console.log("teste");
 SetupServer.start(setupExpress, newGame)
 

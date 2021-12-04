@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createKeyboardListener = void 0;
-function createKeyboardListener(document) {
+export function createKeyboardListener(document) {
     const state = {
         observers: [],
         playerId: null
@@ -34,5 +31,3 @@ function createKeyboardListener(document) {
         unSubscribe
     };
 }
-exports.createKeyboardListener = createKeyboardListener;
-//# sourceMappingURL=keyboardListener.js.map

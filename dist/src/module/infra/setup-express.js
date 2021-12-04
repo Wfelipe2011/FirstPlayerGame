@@ -1,19 +1,13 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SetupExpress = void 0;
-const express_1 = __importDefault(require("express"));
-const body_parser_1 = __importDefault(require("body-parser"));
-const socket_io_1 = require("socket.io");
-const http_1 = require("http");
-class SetupExpress {
-    constructor(port = process.env.PORT || 3001, app = (0, express_1.default)()) {
+import express from "express";
+import bodyParser from "body-parser";
+import { Server } from "socket.io";
+import { createServer } from "http";
+export class SetupExpress {
+    constructor(port = process.env.PORT || 3001, app = express()) {
         this.port = port;
         this.app = app;
-        this.server = (0, http_1.createServer)(app);
-        this.sockets = new socket_io_1.Server(this.server);
+        this.server = createServer(app);
+        this.sockets = new Server(this.server);
     }
     start() {
         this.init();
@@ -28,10 +22,8 @@ class SetupExpress {
     setupRoutes() {
     }
     setupExpress() {
-        this.app.use(body_parser_1.default.json());
-        this.app.use(body_parser_1.default.urlencoded({ extended: true }));
-        this.app.use(express_1.default.static("dist/public"));
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(express.static("dist/public"));
     }
 }
-exports.SetupExpress = SetupExpress;
-//# sourceMappingURL=setup-express.js.map

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Game = void 0;
-class Game {
+export class Game {
     constructor(game, sockets) {
         this.game = game;
         this.sockets = sockets;
@@ -33,5 +30,3 @@ class Game {
         });
     }
 }
-exports.Game = Game;
-//# sourceMappingURL=game.js.map

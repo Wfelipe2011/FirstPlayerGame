@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createGame = void 0;
-function createGame() {
+export function createGame() {
     const state = {
         players: {},
         fruits: {},
@@ -56,10 +53,10 @@ function createGame() {
         });
     }
     function addFruit(command) {
-        const idFruit = command?.fruitId ? command?.fruitId : Math.floor(Math.random() * 1000000000000000000);
+        const idFruit = (command === null || command === void 0 ? void 0 : command.fruitId) ? command === null || command === void 0 ? void 0 : command.fruitId : Math.floor(Math.random() * 1000000000000000000);
         state.fruits[idFruit] = {
-            x: command?.x ? command?.x : Math.floor(Math.random() * state.screen.width),
-            y: command?.y ? command?.y : Math.floor(Math.random() * state.screen.height),
+            x: (command === null || command === void 0 ? void 0 : command.x) ? command === null || command === void 0 ? void 0 : command.x : Math.floor(Math.random() * state.screen.width),
+            y: (command === null || command === void 0 ? void 0 : command.y) ? command === null || command === void 0 ? void 0 : command.y : Math.floor(Math.random() * state.screen.height),
         };
         notifyAll({
             type: 'add-fruit',
@@ -124,5 +121,3 @@ function createGame() {
         gameOver
     };
 }
-exports.createGame = createGame;
-//# sourceMappingURL=create-game.js.map
