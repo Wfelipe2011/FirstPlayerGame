@@ -5,11 +5,12 @@
   "main": "dist/src/server.js",
   "type": "module",
   "scripts": {
-    "start": "npm run build && npm run copy && npm run copymp3 && node --experimental-modules --trace-warnings dist/src/server.js",
-    "dev": "tsc && nodemon --experimental-modules dist/src/server.js",
+    "start": "npm run build && npm run copy && npm run copymp3 && npm run copyJs && node --experimental-modules --trace-warnings dist/src/server.js",
+    "dev": "ts-node-dev --project ./node.tsconfig.json --respawn --transpile-only app/src/index.ts",
     "build": "npx tsc",
     "copy": "cp app/public/index.html dist/public",
-    "copymp3": "cp app/public/*.mp3 dist/public"
+    "copymp3": "cp app/public/*.mp3 dist/public",
+    "copyJs": "cp app/src/*.js dist/src"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +21,6 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "howler": "^2.2.3",
-    "nodemon": "^2.0.15",
     "socket.io": "^4.3.1"
   },
   "devDependencies": {
